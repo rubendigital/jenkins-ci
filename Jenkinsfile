@@ -16,7 +16,7 @@ pipeline {
                          remote.password = 'password'
                          remote.allowAnyHosts = true
                          stage('Remote SSH') {
-                              sshRemove remote: remote, path: "abc.sh"
+                              sshRemove remote: remote, path: "restore_db.sh"
                            }
                       }
                  }
