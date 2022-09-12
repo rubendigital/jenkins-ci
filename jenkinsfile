@@ -1,15 +1,8 @@
 pipeline {
     agent any 
-    enviroment {
-        config = readJSON file: 'servers.json'
-    }
-    parameters {
-        choice(name: "SERVER", choices: ["ALL", "SERVER 1", "SERVER 2", "SERVER 3"])
-    }
     stages {
          stage('Parallel Execution') {
                 echo "HOLA MUNDO"
             }
-         }
-       
+      } 
 }
