@@ -1,9 +1,12 @@
 pipeline {
     agent any 
+    parameters {
+        string(name: 'SERVER', defaultValue: 'all', description: 'Server to execute Restore: ')
+    }
     stages {
-        stage('Stage 1') {
+        stage('Restore') {
             steps {
-                echo 'Hello world!' 
+                 sh('echo ${SERVER}')
             }
         }
     }
