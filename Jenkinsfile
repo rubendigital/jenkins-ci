@@ -8,22 +8,16 @@ pipeline {
     }
     stages {
          stage('Parallel Execution') {
-             stage('Restore IN SERVER 1') {
-                 when { expression { params.SERVER == 'SERVER 1' }}
-                 steps {
-                     node {
-                         def remote = [:]
-                         remote.name = 'MI PC'
-                         remote.host = '192.168.1.174'
-                         remote.user = 'ruben'
-                         remote.password = 'password'
-                         remote.allowAnyHosts = true
-                         stage('Remote SSH') {
-                              sshRemove remote: remote, path: "restore_db.sh"
-                           }
-                      }
+             when { expression { params.SERVER == 'ALL' }}
+             parallel {
+                 config['SERVERS'].each { item -> 
+                     stage('Restore IN SERVER ${item}') {                        
+                        steps {
+                            echo 'Restore IN SERVER ${item}';
+                        }
                  }
-             }
+              }
+            }
          }
         
     }
