@@ -8,17 +8,8 @@ pipeline {
     }
     stages {
          stage('Parallel Execution') {
-             when { expression { params.SERVER == 'ALL' }}
-             parallel {
-                 config['SERVERS'].each { item -> 
-                     stage('Restore IN SERVER ${item}') {                        
-                        steps {
-                            echo 'Restore IN SERVER ${item}';
-                        }
-                 }
-              }
+                echo "HOLA MUNDO"
             }
          }
-        
-    }
+       
 }
