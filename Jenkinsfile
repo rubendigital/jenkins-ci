@@ -11,7 +11,7 @@ pipeline {
                             expression { params.SERVER == 'SERVER 1' }
                         }
                         steps {
-                            sh('echo Restore IN SERVER 1')
+                           echo 'Restore IN SERVER 1'
                         }
                     }
                     stage('Restore IN SERVER 2') {
@@ -19,15 +19,15 @@ pipeline {
                             expression { params.SERVER == 'SERVER 2' }
                         }
                         steps {
-                            sh('echo 2')
+                            echo 'Restore IN SERVER 2'
                         }
                     }
-                    stage('Restore IN SERVER 2') {
+                    stage('Restore IN SERVER 3') {
                          when {
                             expression { params.SERVER == 'SERVER 3' }
                         }
                         steps {
-                            sh('echo Restore IN SERVER 3')
+                            echo 'Restore IN SERVER 3'
                         }
                     }
             }
