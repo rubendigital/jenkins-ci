@@ -11,7 +11,13 @@ pipeline {
                             expression { params.SERVER == 'SERVER 1' }
                         }
                         steps {
-                           echo 'Restore IN SERVER 1'
+                            def remote = [:]
+                            remote.name = 'test'
+                            remote.host = 'test.domain.com'
+                            remote.user = 'root'
+                            remote.password = 'password'
+                            remote.allowAnyHosts = true
+                            echo 'Restore IN SERVER 1'
                         }
                     }
                     stage('Restore IN SERVER 2') {
@@ -19,11 +25,26 @@ pipeline {
                             expression { params.SERVER == 'SERVER 2' }
                         }
                         steps {
+                            def remote = [:]
+                            remote.name = 'test'
+                            remote.host = 'test.domain.com'
+                            remote.user = 'root'
+                            remote.password = 'password'
+                            remote.allowAnyHosts = true
+                            echo 'Restore IN SERVER 1'
+                            
                             echo 'Restore IN SERVER 2'
                         }
                     }
                     stage('Restore IN SERVER 3') {
                          when {
+                            def remote = [:]
+                            remote.name = 'test'
+                            remote.host = 'test.domain.com'
+                            remote.user = 'root'
+                            remote.password = 'password'
+                            remote.allowAnyHosts = true
+                            echo 'Restore IN SERVER 1'                             
                             expression { params.SERVER == 'SERVER 3' }
                         }
                         steps {
