@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    enviroment {
+        config = readJSON file: 'servers.json'
+    }
     parameters {
         choice(name: "SERVER", choices: ["ALL", "SERVER 1", "SERVER 2", "SERVER 3"])
     }
@@ -10,9 +13,9 @@ pipeline {
                  steps {
                      node {
                          def remote = [:]
-                         remote.name = 'test'
-                         remote.host = 'test.domain.com'
-                         remote.user = 'root'
+                         remote.name = 'MI PC'
+                         remote.host = '192.168.1.174'
+                         remote.user = 'ruben'
                          remote.password = 'password'
                          remote.allowAnyHosts = true
                          stage('Remote SSH') {
