@@ -1,0 +1,21 @@
+{
+  "SERVERS" : ["SERVER 1", "SERVER 2", "SERVER 3"],
+  "SERVER 1" : {
+       "name" : "MI PC",
+       "host" : "192.168.1.174",
+       "user" = "ruben",
+       "password" = "password"
+   },
+  "SERVER 2" : {
+       "name" : "MI PC",
+       "host" : "192.168.1.174",
+       "user" = "ruben",
+       "password" = "password"
+   },
+  "SERVER 3" : {
+       "name" : "MI PC",
+       "host" : "192.168.1.174",
+       "user" = "ruben",
+       "password" = "password"
+   }
+}
