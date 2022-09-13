@@ -1,13 +1,6 @@
 #!groovy
 node
 {
-    // checkout the branch
-    stage("Checkout")
-    {
-      checkout scm
-    }
-    
-    echo "STARTING PIPELINE FOR BRANCH ${env.BRANCH_NAME}"
     
     def json = readJSON file: "${env.WORKSPACE}\\servers.json"
     
