@@ -14,6 +14,7 @@ pipeline {
         script {
            def executors = [:]
            servers = readJSON file: "servers.json"
+           fileContents = readFile file: "restore_db.sh"
            servers['SERVERS'].each {
               server ->  
                     executors[server] = {
@@ -25,8 +26,8 @@ pipeline {
                               remote.password = servers[server]['password']
                               remote.allowAnyHosts = true
                               stage('Remote SSH') {
-                                def fileContents = readFile file: "${env.WORKSPACE}" + "/" +"restore_db.sh", encoding: "UTF-8"
-                                sshScript remote: remote, script: "${env.WORKSPACE}" + "/" +"restore_db.sh"
+                                
+                                //sshScript remote: remote, script: "restore_db.sh"
                               }
                             }
                     }
