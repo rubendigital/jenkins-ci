@@ -1,15 +1,21 @@
 pipeline {
-    agent any 
-    enviroment {
-        config = readJSON file: 'servers.json'
+  agent any
+  parameters {
+    string(name: 'CAMUNDA_URL', defaultValue: 'CAMUNDA-URL-GOES-HERE', description: 'URL of Camunda Instance.')
+  } 
+  stages {
+    stage('Validate Deployment Files:') {
+    steps {
+        script {
+          def exists = fileExists "servers.json"
+          echo "-------------------------------------------------------"
+          echo "Looking for servers.json:"
+          if (exists) {
+                echo "servers.json found"
+          } else {
+              error("servers.json cannot be found")
+          }
+        }
+        }
     }
-    parameters {
-        choice(name: "SERVER", choices: ["ALL", "SERVER 1", "SERVER 2", "SERVER 3"])
-    }
-    stages {
-         stage('Parallel Execution') {
-                echo "HOLA MUNDO"
-            }
-         }
-
-}
+ }
