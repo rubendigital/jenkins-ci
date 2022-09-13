@@ -1,14 +1,16 @@
-node
-{
-    
-    
-    
-    stage("Prepearing workspace")
-     {
-        script {
-            def json = readJSON file: "${env.WORKSPACE}\\servers.json"
-    json['servers'].each{ server ->
-            echo '${server}'
-        }
-        }}
+pipeline {
+    agent any 
+    enviroment {
+        config = readJSON file: 'servers.json'
+    }
+    parameters {
+        choice(name: "SERVER", choices: ["ALL", "SERVER 1", "SERVER 2", "SERVER 3"])
+    }
+    stages {
+         stage('Parallel Execution') {
+                echo "HOLA MUNDO"
+            }
+         }
+
+      } 
 }
