@@ -17,11 +17,6 @@ pipeline {
            servers['SERVERS'].each {
               server ->  
                     executors[server] = {
-                            // node {
-                            //     stage("${server}") {
-                            //         echo "${server}"
-                            //     }
-                            // }
                             node {
                               def remote = [:]
                               remote.name = servers[server]['name']
