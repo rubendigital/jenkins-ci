@@ -1,11 +1,20 @@
-pipeline {
-    agent any
-    severs = readJSON file: "${env.WORKSPACE}\\servers.json"
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
+#!groovy
+node
+{
+    // checkout the branch
+    stage("Checkout")
+    {
+      checkout scm
+    }
+    
+    echo "STARTING PIPELINE FOR BRANCH ${env.BRANCH_NAME}"
+    
+    def json = readJSON file: "${env.WORKSPACE}\\servers.json"
+    
+    stage("Prepearing workspace")
+    {
+    json['servers'].each{ server ->
+            echo '${server}'
         }
     }
 }
