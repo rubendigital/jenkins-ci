@@ -15,10 +15,14 @@ pipeline {
            servers = readJSON file: "servers.json"
            servers['SERVERS'].each {
             server ->  
-              echo "Hello ${server}"             
-           }
+                  stage("Work 1"){
+                        steps{
+                            parallel ( "Build common Library":{ })
+                          }
+                  }
+            }
         }
       }
     }
- }
+  }
 }
