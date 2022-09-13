@@ -19,7 +19,7 @@ pipeline {
                     executors[server] = {
                             node {
                                 stage("${server}") {
-                                    echo '${server}'
+                                    echo "${server}"
                                 }
                             }
                     }
