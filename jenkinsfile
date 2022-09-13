@@ -18,5 +18,13 @@ pipeline {
         }
         }
     }
+    stage('Execute task in bd') {
+      steps {
+        script {
+           servers = readJSON file: "servers.json"
+           echo '${servers['SERVERS']}'
+        }
+      }
+    }
  }
 }
