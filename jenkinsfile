@@ -17,6 +17,7 @@ pipeline {
            fileContents = readFile file: "restore_db.sh"
            servers['SERVERS'].each {
               server ->  
+              if (params.SERVER == 'TODOS' or params.SERVER == servers['SERVERS']) {
                     executors[server] = {
                             node {
                               def remote = [:]
@@ -27,10 +28,10 @@ pipeline {
                               remote.allowAnyHosts = true
                               stage('Remote SSH') {
                                 sshCommand remote: remote, command: fileContents
-                                 //sshScript remote: remote, script: "restore_db.sh"
                               }
                             }
                     }
+              }
               }
               parallel executors
         }
