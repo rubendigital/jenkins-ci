@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    def severs = readJSON file: "${env.WORKSPACE}\\servers.json"
+    severs = readJSON file: "${env.WORKSPACE}\\servers.json"
     stages {
         stage('Hello') {
             steps {
