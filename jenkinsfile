@@ -1,6 +1,9 @@
 pipeline {
   agent any
-  servers = readJSON file: "servers.json"
+  enviroment {
+    servers = readJSON file: "servers.json"
+  }
+  
   parameters {
     choice(
         name: 'SERVER', 
