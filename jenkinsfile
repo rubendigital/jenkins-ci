@@ -2,12 +2,14 @@
 node
 {
     
-    def json = readJSON file: "${env.WORKSPACE}\\servers.json"
+    
     
     stage("Prepearing workspace")
-    {
+     {
+        script {
+            def json = readJSON file: "${env.WORKSPACE}\\servers.json"
     json['servers'].each{ server ->
             echo '${server}'
         }
-    }
+        }}
 }
