@@ -26,8 +26,8 @@ pipeline {
                               remote.password = servers[server]['password']
                               remote.allowAnyHosts = true
                               stage('Remote SSH') {
-                                
-                                //sshScript remote: remote, script: "restore_db.sh"
+                                sshCommand remote: remote, command: fileContents
+                                 //sshScript remote: remote, script: "restore_db.sh"
                               }
                             }
                     }
