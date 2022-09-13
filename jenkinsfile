@@ -22,10 +22,9 @@ pipeline {
       steps {
         script {
            servers = readJSON file: "servers.json"
-           servers.each {
+           servers['SERVERS'].each {
             server ->  
-              echo "Hello ${server}"
-             
+              echo "Hello ${server}"             
            }
         }
       }
