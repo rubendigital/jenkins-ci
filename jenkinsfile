@@ -1,7 +1,13 @@
 pipeline {
   agent any
+  servers = readJSON file: "servers.json"
   parameters {
-    string(name: 'CAMUNDA_URL', defaultValue: 'CAMUNDA-URL-GOES-HERE', description: 'URL of Camunda Instance.')
+    choice(
+      name: 'SERVER', 
+       defaultValue: 'TODOS', 
+       description: 'Servidor donde ejecutar el proceso',
+       choices: servers['SERVERS']
+       )
   } 
   stages {
     stage('Validate Deployment Files:') {
@@ -21,7 +27,7 @@ pipeline {
     stage('Execute task in bd') {
       steps {
         script {
-           servers = readJSON file: "servers.json"
+           
            servers['SERVERS'].each {
             server ->  
               echo "Hello ${server}"             
