@@ -1,35 +1,18 @@
 pipeline {
   agent any
-  enviroment {
-    servers = readJSON file: "servers.json"
-  }
-  
+ 
   parameters {
     choice(
         name: 'SERVER', 
         description: 'Servidor donde ejecutar el proceso',
-        choices: servers['SERVERS']
+        choices: ["TODOS", "SERVIDOR 1", "SERVIDOR 2", "SERVIDOR 3"]
        )
   } 
   stages {
-    stage('Validate Deployment Files:') {
-    steps {
-        script {
-          def exists = fileExists "servers.json"
-          echo "-------------------------------------------------------"
-          echo "Looking for servers.json:"
-          if (exists) {
-                echo "servers.json found"
-          } else {
-              error("servers.json cannot be found")
-          }
-        }
-        }
-    }
     stage('Execute task in bd') {
       steps {
         script {
-           
+           servers = readJSON file: "servers.json"
            servers['SERVERS'].each {
             server ->  
               echo "Hello ${server}"             
