@@ -17,7 +17,7 @@ pipeline {
            fileContents = readFile file: "restore_db.sh"
            servers['SERVERS'].each {
               server ->  
-              if (params.SERVER == 'TODOS' || params.SERVER == servers['SERVERS']) {
+              if (params.SERVER == 'TODOS' || params.SERVER == server) {
                     executors[server] = {
                             node {
                               def remote = [:]
