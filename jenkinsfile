@@ -25,6 +25,7 @@ pipeline {
                               remote.password = servers[server]['password']
                               remote.allowAnyHosts = true
                               stage('Remote SSH') {
+                                def fileContents = readFile file: "restore_db.sh", encoding: "UTF-8"
                                 sshScript remote: remote, script: "restore_db.sh"
                               }
                             }
