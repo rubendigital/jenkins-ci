@@ -1,5 +1,5 @@
 {
-  "SERVERS" : ["TODOS", "SERVIDOR 1", "SERVIDOR 2", "SERVIDOR 3"],
+  "SERVERS" : ["SERVIDOR 1", "SERVIDOR 2", "SERVIDOR 3"],
   "SERVIDOR 1" : {
        "name" : "MI PC",
        "host" : "192.168.1.174",

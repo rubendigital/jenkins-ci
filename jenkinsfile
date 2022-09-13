@@ -17,13 +17,23 @@ pipeline {
            servers['SERVERS'].each {
               server ->  
                     executors[server] = {
+                            // node {
+                            //     stage("${server}") {
+                            //         echo "${server}"
+                            //     }
+                            // }
                             node {
-                                stage("${server}") {
-                                    echo "${server}"
-                                }
+                              def remote = [:]
+                              remote.name = servers[server]['name']
+                              remote.host = servers[server]['host']
+                              remote.user = servers[server]['user']
+                              remote.password = servers[server]['password']
+                              remote.allowAnyHosts = true
+                              stage('Remote SSH') {
+                                sshScript remote: remote, script: "restore_db.sh"
+                              }
                             }
                     }
-                   
               }
               parallel executors
         }
