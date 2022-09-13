@@ -3,10 +3,9 @@ pipeline {
   servers = readJSON file: "servers.json"
   parameters {
     choice(
-      name: 'SERVER', 
-       defaultValue: 'TODOS', 
-       description: 'Servidor donde ejecutar el proceso',
-       choices: servers['SERVERS']
+        name: 'SERVER', 
+        description: 'Servidor donde ejecutar el proceso',
+        choices: servers['SERVERS']
        )
   } 
   stages {
