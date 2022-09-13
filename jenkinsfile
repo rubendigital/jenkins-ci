@@ -23,9 +23,9 @@ pipeline {
         script {
            servers = readJSON file: "servers.json"
            servers.each {
-            server -> {
-              echo '${server}'
-            }
+            server ->  
+              echo "Hello ${server}"
+             
            }
         }
       }
