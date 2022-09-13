@@ -12,15 +12,20 @@ pipeline {
     stage('Execute task in bd') {
       steps {
         script {
+           def executors = [:]
            servers = readJSON file: "servers.json"
            servers['SERVERS'].each {
-            server ->  
-                  stage("Work 1"){
-                        steps{
-                            parallel ( "Build common Library":{ })
-                          }
-                  }
-            }
+              server ->  
+                    executors[server] = {
+                            node {
+                                stage("${server}") {
+                                    echo '${server}'
+                                }
+                            }
+                    }
+                   
+              }
+              parallel servers
         }
       }
     }
