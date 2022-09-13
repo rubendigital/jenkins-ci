@@ -2,7 +2,7 @@ pipeline {
     agent any 
     stages {
          stage('Parallel Execution') {
-                echo "HOLA MUNDO"
+                echo'HOLA MUNDO'
             }
       } 
 }
