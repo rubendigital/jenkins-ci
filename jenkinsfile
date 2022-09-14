@@ -1,3 +1,4 @@
+import groovy.json.JsonOutput
 pipeline {
   agent any
  
@@ -15,7 +16,13 @@ pipeline {
            def executors = [:]
            servers = readJSON file: "servers.json"
            fileContents = readFile file: "restore_db.sh"
-           sh 'curl -X POST --data-urlencode \\"payload={\\"channel\\": \\"#drupal\\", \\"username\\": \\"webhookbot\\", \\"text\\": \\"Esto es un ejemplo desde jenkinsfile, usando webhookbot.\\", \\"icon_emoji\\": \\":ghost:\\"}\\" https://hooks.slack.com/services/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'
+           def slackURL = 'https://hooks.slack.com/services/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'
+           def payload = JsonOutput.toJson([text : "Esto es un ejemplo desde jenkinsfile, usando webhookbot",
+                                     channel   : "#drupal",
+                                     username  : "jenkins",
+                                     icon_emoji: ":jenkins:"])
+          sh "curl -X POST --data-urlencode \'payload=${payload}\' ${slackURL}"
+           
            servers['SERVERS'].each {
               server ->  
               if (params.SERVER == 'TODOS' || params.SERVER == server) {
