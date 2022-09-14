@@ -16,7 +16,7 @@ pipeline {
            def executors = [:]
            servers = readJSON file: "servers.json"
            fileContents = readFile file: "restore_db.sh"
-           def slackURL = 'https://hooks.slack.com/services/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'
+           def slackURL = 'https://hooks.slack.com/services/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'
            def payload = JsonOutput.toJson([text : "Esto es un ejemplo desde jenkinsfile, usando webhookbot",
                                      channel   : "#drupal",
                                      username  : "jenkins",
